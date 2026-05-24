@@ -11,11 +11,32 @@ def load_insurance_data(path: str | Path = "data/insurance_data.csv") -> pd.Data
         Path to CSV file
     """
     p = Path(path)
-    df = pd.read_csv(p, parse_dates=["TransactionMonth"], infer_datetime_format=True)
+    df = pd.read_csv(p, sep='\t', parse_dates=["TransactionDate"])
 
     # basic dtype fixes
-    for col in ["TotalPremium", "TotalClaims", "CustomValueEstimate", "SumInsured"]:
+    numeric_cols = [
+        "TotalPremium",
+        "TotalClaims",
+        "CustomValueEstimate",
+        "ClaimAmount",
+        "AnnualPremium",
+        "Deductible",
+        "AnnualIncome",
+        "RiskScore",
+        "Age",
+        "NCD",
+    ]
+    for col in numeric_cols:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    if "Claimed" in df.columns:
+        df["Claimed"] = (
+            df["Claimed"].astype(str)
+            .str.strip()
+            .str.upper()
+            .map({"TRUE": True, "FALSE": False})
+            .fillna(df["Claimed"])
+        )
 
     return df
