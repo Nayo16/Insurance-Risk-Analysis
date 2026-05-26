@@ -1,0 +1,6 @@
+TransactionMonth,Province,PostalCode,Gender,VehicleType,Make,Model,TotalPremium,TotalClaims,CustomValueEstimate
+2014-02-01,Western Cape,8000,M,Pickup,Toyota,Hilux,1200,300,200000
+2014-03-01,Gauteng,2000,F,Sedan,Volkswagen,Polo,900,100,150000
+2014-04-01,KwaZulu-Natal,4001,M,SUV,Ford,Ecosport,1500,0,250000
+2014-05-01,Eastern Cape,6001,F,Sedan,Toyota,Corolla,1100,50,180000
+2015-08-01,Gauteng,2090,M,SUV,Hyundai,Tucson,1300,400,220000
